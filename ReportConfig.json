@@ -1,0 +1,19 @@
+{
+    "files": [
+        "contracts/MISOMarket.sol",
+        "contracts/Auctions/BatchAuction.sol",
+        "contracts/Auctions/Crowdsale.sol",
+        "contracts/Auctions/DutchAuction.sol",
+        "contracts/Auctions/HyperbolicAuction.sol",
+        "contracts/MISOTokenFactory.sol",
+        "contracts/Tokens/ERC20.sol",
+        "contracts/Tokens/FixedToken.sol",
+        "contracts/Tokens/MintableToken.sol",
+        "contracts/Tokens/SushiToken.sol",
+        "contracts/Access/MISOAccessFactory.sol",
+        "contracts/Access/MISOAdminAccess.sol",
+        "contracts/Access/MISOAccessControls.sol",
+        "contracts/Access/ListFactory.sol",
+        "contracts/Access/PointList.sol"
+    ]
+}
