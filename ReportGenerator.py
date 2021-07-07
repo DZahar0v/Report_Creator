@@ -8,6 +8,7 @@ class Finding:
         self.name = _name
         self.description = _description
         self.recommendationText = _recommendationText
+        self.recommendationCode = ""
         self.lines = []
         if (_lang.upper() == "SOL"):
             self.lang = "solidity"
@@ -49,35 +50,49 @@ def scanFile(fileName):
 
         if (FindingString in line):
             # read status and name
-            stIndex = line.index(StatusString)
-            nmIndex = line.index(NameString)
+            try:
+                stIndex = line.index(StatusString)
+            except Exception:
+                print("STATE |...| not found in " + fileName + " on line " + str(lineCount))
+                continue
+            try:
+                nmIndex = line.index(NameString)
+            except Exception:
+                print("NAME |...| not found in " + fileName + " on line " + str(lineCount))
+                continue
             status = line[stIndex+8 : nmIndex-2]
             name = line[nmIndex+6 : len(line)-2]
-            # read description
-            line = code.readline()            
-            dsIndex = line.index(DescriptionString)                        
-            desc = line[dsIndex+6 : len(line)-2]
-            # read recommendation text
-            line = code.readline()            
-            rtIndex = line.index(RecommendationTextString)                        
-            recText = line[rtIndex+10 : len(line)-2]
-            # read recommendation code if exist
-            line = code.readline()            
-            recCode = ""
-            while (RecommendationCodeString in line):
-                rcIndex = line.index(RecommendationCodeString)                        
-                if (recCode != ""):
-                    recCode = recCode + '\n'
-                recCode = recCode + line[rcIndex+10 : len(line)-2]
-                line = code.readline()                
-            bFind = True
-            # add finding to map
-            key = status + '_' + name
+            key = status + '_' + name                
             if key in Findings:
-                Findings[key].addLine(lineCount, fileName)
-                if (recCode != ""):
-                    Findings[key].addCode(recCode)
-            else:
+                Findings[key].addLine(lineCount, fileName)                
+            else:    
+                # read description
+                line = code.readline()            
+                try:
+                    dsIndex = line.index(DescriptionString)                        
+                except Exception:
+                    print("DESC |...| not found in " + fileName + " on line " + str(lineCount))
+                    continue
+                desc = line[dsIndex+6 : len(line)-2]
+                # read recommendation text
+                line = code.readline()            
+                try:
+                    rtIndex = line.index(RecommendationTextString)                        
+                except Exception:
+                    print("REC_TEXT |...| not found in " + fileName + " on line " + str(lineCount))
+                    continue    
+                recText = line[rtIndex+10 : len(line)-2]
+                # read recommendation code if exist
+                line = code.readline()            
+                recCode = ""
+                while (RecommendationCodeString in line):
+                    rcIndex = line.index(RecommendationCodeString)                        
+                    if (recCode != ""):
+                        recCode = recCode + '\n'
+                    recCode = recCode + line[rcIndex+10 : len(line)-2]
+                    line = code.readline()                
+                bFind = True
+                # add finding to map                                
                 Findings[key] = Finding(status, name, desc, recText, file_extension[1:])
                 Findings[key].addLine(lineCount, fileName)
                 if (recCode != ""):
@@ -91,7 +106,7 @@ def scanFile(fileName):
 def FillReportByKeys(keys, file, status, path):
     file.write("### " + status + "\n")    
     if (len(keys) == 0):        
-        file.write("Not found\n")        
+        file.write("Not found\n\n")        
     else:
         findingCount = 1
         for key in keys:
@@ -113,8 +128,8 @@ def FillReportByKeys(keys, file, status, path):
                 file.write(recCode + "\n")
                 file.write("```\n")
             file.write("##### STATUS\n")
-            file.write("NEW\n")
-    file.write("\n")
+            file.write("NEW\n\n")
+            findingCount += 1    
     return
 
 def CreateReport(fileName, path, files):
@@ -146,7 +161,7 @@ if __name__ == "__main__":
     outFile = str(sys.argv[1])
     basePath = str(sys.argv[2])    
     #outFile = "Report.md"
-    #basePath = "https://github.com/chefgonpachi/MISO/blob/b361e4cac2028b7c8bc6cc6fe150c219c607dfc0"
+    #basePath = "https://github.com/akropolisio/akropolis/tree/6dd43f4cee728bad1ebaa7d43ecc24aea46fbd7d"
 
     with open("ReportConfig.json") as jsonFile:
         jsonObject = json.load(jsonFile)
@@ -161,6 +176,7 @@ if __name__ == "__main__":
         for file in files:            
             fileName = file_prefix + file
             if (fileName in filesList):
+                print("Working with " + fileName + "...")
                 scanFile(fileName)
 
     CreateReport(outFile, basePath, filesList)

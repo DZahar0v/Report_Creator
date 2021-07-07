@@ -1,19 +1,10 @@
 {
     "files": [
-        "contracts/MISOMarket.sol",
-        "contracts/Auctions/BatchAuction.sol",
-        "contracts/Auctions/Crowdsale.sol",
-        "contracts/Auctions/DutchAuction.sol",
-        "contracts/Auctions/HyperbolicAuction.sol",
-        "contracts/MISOTokenFactory.sol",
-        "contracts/Tokens/ERC20.sol",
-        "contracts/Tokens/FixedToken.sol",
-        "contracts/Tokens/MintableToken.sol",
-        "contracts/Tokens/SushiToken.sol",
-        "contracts/Access/MISOAccessFactory.sol",
-        "contracts/Access/MISOAdminAccess.sol",
-        "contracts/Access/MISOAccessControls.sol",
-        "contracts/Access/ListFactory.sol",
-        "contracts/Access/PointList.sol"
+        "contracts/vakro/AdelVAkroSwap.sol",
+        "contracts/vakro/AdelVAkroVestingSwap.sol",
+        "contracts/vakro/MinterRole.sol",        
+        "contracts/vakro/VestedAkroSenderRole.sol",
+        "contracts/vakro/VestedAkro.sol",
+        "contracts/yearnV2/vault-savings/VaultSavingsV2.sol"
     ]
 }
