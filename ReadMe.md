@@ -4,6 +4,15 @@
 ###### // REC_TEXT |We recommend add simple check:|
 ###### // REC_CODE |require(!marketStatus.finalized, "Auction already finalized");|
 
+### Usage
+In command line from root directory of project for audit execute:
+
+`python3 ReportGenerator.py <arg1> <arg2>`
+
+where 
+- `<arg1>` - name of file for report (example: Report.md)
+- `<arg2>` - base path for git repository of project (it would be used for create scope of audit) (example: https://github.com/akropolisio/akropolis/tree/6dd43f4cee728bad1ebaa7d43ecc24aea46fbd7d)
+
 ### NOTE
 #### 1.
 Line with REC_CODE can be empty or can contain several strings.

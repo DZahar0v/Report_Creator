@@ -63,6 +63,7 @@ def scanFile(fileName):
             status = line[stIndex+8 : nmIndex-2]
             name = line[nmIndex+6 : len(line)-2]
             key = status + '_' + name                
+            print("Finding status: " + status + " name: " + name)
             if key in Findings:
                 Findings[key].addLine(lineCount, fileName)                
             else:    
@@ -128,7 +129,9 @@ def FillReportByKeys(keys, file, status, path):
                 file.write(recCode + "\n")
                 file.write("```\n")
             file.write("##### STATUS\n")
-            file.write("NEW\n\n")
+            file.write("NEW\n")
+            file.write("##### Client's commentary\n")        
+            file.write("> comment here\n\n")
             findingCount += 1    
     return
 
