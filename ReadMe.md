@@ -1,4 +1,4 @@
-### Example of comment
+### Example of full comment
 ###### // FINDING: STATUS |MAJOR| NAME |Possible commitment to canceled auction|
 ###### // DESC |If auction canceled, but users deposit more that minimum commitment, then user lose their assets|
 ###### // REC_TEXT |We recommend add simple check:|
@@ -35,3 +35,6 @@ Several findings can have same name and status. In this case, links to all locat
 
 #### 3. 
 Possible status: CRITICAL, MAJOR, WARNING, COMMENT.
+
+#### 4. 
+If some part of comment are omitted, then for this comment warning message would be printed in console.
