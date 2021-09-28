@@ -128,7 +128,7 @@ def FillReportByKeys(keys, file, status, path):
                 file.write("```" + ext + "=\n")
                 file.write(recCode + "\n")
                 file.write("```\n")
-            file.write("##### STATUS\n")
+            file.write("##### Status\n")
             file.write("NEW\n")
             file.write("##### Client's commentary\n")        
             file.write("> comment here\n\n")
@@ -155,8 +155,8 @@ def CreateReport(fileName, path, files):
     report.write("\n")
     FillReportByKeys(Critical_keys, report, "CRITICAL", path)
     FillReportByKeys(Major_keys, report, "MAJOR", path)
-    FillReportByKeys(Warning_keys, report, "WARNING", path)
-    FillReportByKeys(Comment_keys, report, "COMMENT", path)
+    FillReportByKeys(Warning_keys, report, "WARNINGS", path)
+    FillReportByKeys(Comment_keys, report, "COMMENTS", path)
     report.close()
     return
 
@@ -164,7 +164,7 @@ if __name__ == "__main__":
     outFile = str(sys.argv[1])
     basePath = str(sys.argv[2])    
     #outFile = "Report.md"
-    #basePath = "https://github.com/akropolisio/akropolis/tree/6dd43f4cee728bad1ebaa7d43ecc24aea46fbd7d"
+    #basePath = https://github.com/xorder-finance/xorder-contracts/blob/main
 
     with open("ReportConfig.json") as jsonFile:
         jsonObject = json.load(jsonFile)

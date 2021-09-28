@@ -1,10 +1,5 @@
 {
     "files": [
-        "contracts/vakro/AdelVAkroSwap.sol",
-        "contracts/vakro/AdelVAkroVestingSwap.sol",
-        "contracts/vakro/MinterRole.sol",        
-        "contracts/vakro/VestedAkroSenderRole.sol",
-        "contracts/vakro/VestedAkro.sol",
-        "contracts/yearnV2/vault-savings/VaultSavingsV2.sol"
+        "contracts/SomeContract.sol"
     ]
 }
