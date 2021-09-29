@@ -160,15 +160,13 @@ def CreateReport(fileName, path, files):
     report.close()
     return
 
-if __name__ == "__main__":    
-    outFile = str(sys.argv[1])
-    basePath = str(sys.argv[2])    
-    #outFile = "Report.md"
-    #basePath = https://github.com/xorder-finance/xorder-contracts/blob/main
-
+if __name__ == "__main__":        
     with open("ReportConfig.json") as jsonFile:
         jsonObject = json.load(jsonFile)
         jsonFile.close()
+    
+    outFile = jsonObject['filename']    
+    basePath = jsonObject['link']
     filesList = jsonObject['files']
 
     for root, dirs, files in os.walk("."):
