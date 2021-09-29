@@ -7,11 +7,7 @@
 ### Usage
 In command line from root directory of project for audit execute:
 
-`python3 ReportGenerator.py <arg1> <arg2>`
-
-where 
-- `<arg1>` - name of file for report (example: Report.md)
-- `<arg2>` - base path for git repository of project (it would be used for create scope of audit) (example: https://github.com/akropolisio/akropolis/tree/6dd43f4cee728bad1ebaa7d43ecc24aea46fbd7d)
+`python3 ReportGenerator.py`
 
 ### NOTE
 #### 1.
@@ -38,3 +34,6 @@ Possible status: CRITICAL, MAJOR, WARNING, COMMENT.
 
 #### 4. 
 If some part of comment are omitted, then for this comment warning message would be printed in console.
+
+#### 5.
+To specify output file name, base path to directory of project on github and contracts which must be included in scope, see `ReportConfig.json`.
